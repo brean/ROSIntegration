@@ -10,7 +10,11 @@ UStdSrvsTriggerRequestConverter::UStdSrvsTriggerRequestConverter()
 bool UStdSrvsTriggerRequestConverter::ConvertOutgoingRequest(TSharedPtr<FROSBaseServiceRequest> Request, bson_t** BSONRequest)
 {
 	auto TriggerRequest = StaticCastSharedPtr<std_srvs::FTriggerRequest>(Request);
-	*BSONRequest = BCON_NEW();
+	// FIXME: define "success" and "message", empty BCON is not allowed for linux
+	// *BSONRequest = BCON_NEW(
+	// 	"success", BCON_BOOL(...),
+	// 	"message", BCON_UTF8(...)
+	// );
 
 	return true;
 }
